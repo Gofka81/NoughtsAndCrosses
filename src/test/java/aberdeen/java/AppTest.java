@@ -1,4 +1,4 @@
-package aberdeeen.java;
+package aberdeen.java;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
