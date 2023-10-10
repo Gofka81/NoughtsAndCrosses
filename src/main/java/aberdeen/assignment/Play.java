@@ -22,11 +22,17 @@ class Play{
         System.out.println("Welcome to noughts and crosses");
         game = new Game();  // create game board
         input = new Scanner(System.in);  // Scanner for user input
-        while (true) { // infinite loop
+        boolean status = true;
+        while (status) { // infinite loop
             game.printBoard(); // print board
             playerTurn(); // human turn
-            computerTurn(); // computer tuen
+            status = updateStatus();
+            if (!status)
+                break;
+            computerTurn(); // computer turn
+            status = updateStatus();
         }
+        game.printResults(game.gameStatus());
     }
     public void playerTurn()  {
         // Player turn: just read in a sqaure and claim it for human
@@ -39,5 +45,9 @@ class Play{
     public void computerTurn() {
         // computer turn - currently does nothing other than print out a message
         System.out.println("Computer is thinking");
+    }
+
+    public boolean updateStatus(){
+        return game.gameStatus() == GameStatus.InProgress;
     }
 }
