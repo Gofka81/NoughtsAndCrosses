@@ -7,6 +7,7 @@
 
 package aberdeen.assignment;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 class Play{
@@ -36,11 +37,16 @@ class Play{
         game.printResults(game.gameStatus());
     }
     public void playerTurn()  {
-        // Player turn: just read in a square and claim it for human
+        // Player turn: read in a square and claim it for the human
         System.out.print("Take a square (1-9): ");
-        // Reading data using readLine
-        int square = input.nextInt()-1;
-        game.setHuman(square);
+        try {
+            int square = input.nextInt() - 1;
+            game.setHuman(square);
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a number between 1 and 9.");
+            input.next(); // Consume the invalid input
+            playerTurn(); // Retry player's turn
+        }
     }
 
     public void computerTurn() {
