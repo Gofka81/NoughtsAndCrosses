@@ -12,6 +12,7 @@ import java.util.Scanner;
 class Play{
     Game game;   // the noughts and crosses game
     Scanner input;
+    Computer computer;
     public static void main(String[] args) {
         // main method - just create a Play object
         new Play();
@@ -21,33 +22,31 @@ class Play{
         // constructor
         System.out.println("Welcome to noughts and crosses");
         game = new Game();  // create game board
+        computer = new Computer(); // create computer bot
         input = new Scanner(System.in);  // Scanner for user input
-        boolean status = true;
-        while (status) { // infinite loop
-            game.printBoard(); // print board
-            playerTurn(); // human turn
-            status = updateStatus();
-            if (!status)
-                break;
-            computerTurn(); // computer turn
-            status = updateStatus();
+        while (!game.isGameOver()) { // infinite loop
+            if (game.getActiveTurn() == GameStatus.Human){
+                game.printBoard(); // print board
+                playerTurn(); // human turn
+            }else {
+                computerTurn(); // computer turn
+            }
+            game.nextTurn();
         }
         game.printResults(game.gameStatus());
     }
     public void playerTurn()  {
-        // Player turn: just read in a sqaure and claim it for human
+        // Player turn: just read in a square and claim it for human
         System.out.print("Take a square (1-9): ");
         // Reading data using readLine
-        int square = input.nextInt();
+        int square = input.nextInt()-1;
         game.setHuman(square);
     }
 
     public void computerTurn() {
         // computer turn - currently does nothing other than print out a message
         System.out.println("Computer is thinking");
-    }
-
-    public boolean updateStatus(){
-        return game.gameStatus() == GameStatus.InProgress;
+        computer.minimax(new Game(game), 0);
+        game.setComputer(computer.getChoice());
     }
 }
