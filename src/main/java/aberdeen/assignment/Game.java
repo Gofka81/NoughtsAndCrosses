@@ -13,7 +13,7 @@ import java.util.Random;
 public class Game {
 
     BoxStatus[] board = new BoxStatus[9];  // board contains 9 boxes
-    GameStatus currentTurn;
+    private GameStatus currentTurn;
 
 
     /**
@@ -72,6 +72,10 @@ public class Game {
 
     public BoxStatus[] getBoard(){
         return board.clone();
+    }
+
+    public void setTurn(GameStatus turn){
+        currentTurn = turn;
     }
 
     public Game getNewState(int move){
