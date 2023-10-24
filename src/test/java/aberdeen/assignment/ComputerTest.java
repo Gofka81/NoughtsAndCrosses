@@ -20,7 +20,7 @@ public class ComputerTest {
     @Test
     public void testComputerWinningMove() {
         /*
-        Test if the computer chooses a winning move when available
+        Test if the computer chooses a winning move rather then block
 
         Init board:
              H |   |
@@ -107,26 +107,25 @@ public class ComputerTest {
     }
 
     @Test
-    public void testBestMove() {
+    public void testBestMove1() {
         /*
         Test if the computer makes the best available move
 
         Init board:
              H |   | C
             -----------
-               | C | H
+               | C |
             -----------
                |   | H
 
         Expected board:
              H |   | C
             -----------
-               | C | H
+               | C |
             -----------
              C |   | H
         */
         game.setHuman(0);
-        game.setHuman(5);
         game.setHuman(8);
         game.setComputer(2);
         game.setComputer(4);
@@ -137,4 +136,34 @@ public class ComputerTest {
         assertSame(BoxStatus.Computer, game.getBox(6));
     }
 
+    @Test
+    public void testNeverGiveUp() {
+        /*
+        Test if the computer algorithm continues to play smart even when the game is already lost
+
+        Init board:
+               | H |
+            -----------
+               |   | H
+            -----------
+             C | C | H
+
+        Expected board:
+               | H | C
+            -----------
+               |   | H
+            -----------
+             C | C | H
+        */
+        game.setHuman(1);
+        game.setHuman(5);
+        game.setHuman(8);
+        game.setComputer(6);
+        game.setComputer(7);
+
+        computer.minimax(new Game(game), 0);
+        game.setComputer(computer.getChoice());
+
+        assertSame(BoxStatus.Computer, game.getBox(2));
+    }
 }

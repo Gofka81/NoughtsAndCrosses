@@ -12,8 +12,8 @@ import java.util.Scanner;
 
 class Play{
     Game game;   // the noughts and crosses game
-    Scanner input;
-    Computer computer;
+    Scanner input; // Scanner for user input
+    Computer computer; // Computer bot
     public static void main(String[] args) {
         // main method - just create a Play object
         new Play();
