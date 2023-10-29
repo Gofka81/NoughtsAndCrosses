@@ -1,4 +1,4 @@
-package aberdeen.assignment;
+package aberdeen.assignment.utils;
 
 /*
  * BoxStatus.java
