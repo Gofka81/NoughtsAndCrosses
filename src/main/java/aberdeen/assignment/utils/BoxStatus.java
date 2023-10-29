@@ -1,4 +1,4 @@
-package aberdeen.assignment;
+package aberdeen.assignment.utils;
 
 /*
  * BoxStatus.java
@@ -8,6 +8,4 @@ package aberdeen.assignment;
 public enum BoxStatus {Empty, Human, Computer
 
 }
-
-enum GameStatus {Human, Computer, Tie, InProgress}
 

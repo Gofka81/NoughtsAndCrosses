@@ -1,11 +1,7 @@
-/*
- * Play.java
- *
- * Play a game of noughts and crosses
- * includes main method
- */
-
 package aberdeen.assignment;
+
+import aberdeen.assignment.utils.GameStatus;
+import aberdeen.assignment.utils.OccupiedBoxException;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -45,6 +41,9 @@ class Play{
         } catch (InputMismatchException e) {
             System.out.println("Invalid input. Please enter a number between 1 and 9.");
             input.next(); // Consume the invalid input
+            playerTurn(); // Retry player's turn
+        } catch (OccupiedBoxException e){
+            System.out.println(e.getMessage());
             playerTurn(); // Retry player's turn
         }
     }

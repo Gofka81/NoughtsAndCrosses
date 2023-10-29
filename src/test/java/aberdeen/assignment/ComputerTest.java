@@ -1,9 +1,13 @@
 package aberdeen.assignment;
 
+import aberdeen.assignment.utils.BoxStatus;
+import aberdeen.assignment.utils.GameStatus;
+import aberdeen.assignment.utils.OccupiedBoxException;
 import org.junit.Test;
 import org.junit.Before;
 
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.fail;
 
 public class ComputerTest {
 
@@ -36,13 +40,18 @@ public class ComputerTest {
             -----------
                | C |
         */
-        game.setHuman(0);
-        game.setHuman(3);
-        game.setComputer(4);
-        game.setComputer(7);
 
-        computer.minimax(new Game(game), 0);
-        game.setComputer(computer.getChoice());
+        try {
+            game.setHuman(0);
+            game.setHuman(3);
+            game.setComputer(4);
+            game.setComputer(7);
+
+            computer.minimax(new Game(game), 0);
+            game.setComputer(computer.getChoice());
+        } catch (OccupiedBoxException e) {
+            fail(e.getMessage());
+        }
 
         assertSame(BoxStatus.Computer, game.getBox(1));
     }
@@ -66,12 +75,17 @@ public class ComputerTest {
             -----------
                |   |
         */
-        game.setHuman(0);
-        game.setHuman(1);
-        game.setComputer(4);
 
-        computer.minimax(new Game(game), 0);
-        game.setComputer(computer.getChoice());
+        try {
+            game.setHuman(0);
+            game.setHuman(1);
+            game.setComputer(4);
+
+            computer.minimax(new Game(game), 0);
+            game.setComputer(computer.getChoice());
+        } catch (OccupiedBoxException e) {
+            fail(e.getMessage());
+        }
 
         assertSame(BoxStatus.Computer, game.getBox(2));
     }
@@ -95,13 +109,18 @@ public class ComputerTest {
             -----------
                |   |
         */
-        game.setHuman(1);
-        game.setHuman(3);
-        game.setComputer(0);
-        game.setComputer(2);
 
-        computer.minimax(new Game(game), 0);
-        game.setComputer(computer.getChoice());
+        try {
+            game.setHuman(1);
+            game.setHuman(3);
+            game.setComputer(0);
+            game.setComputer(2);
+
+            computer.minimax(new Game(game), 0);
+            game.setComputer(computer.getChoice());
+        } catch (OccupiedBoxException e) {
+            fail(e.getMessage());
+        }
 
         assertSame(BoxStatus.Computer, game.getBox(4));
     }
@@ -125,13 +144,18 @@ public class ComputerTest {
             -----------
              C |   | H
         */
-        game.setHuman(0);
-        game.setHuman(8);
-        game.setComputer(2);
-        game.setComputer(4);
 
-        computer.minimax(new Game(game), 0);
-        game.setComputer(computer.getChoice());
+        try {
+            game.setHuman(0);
+            game.setHuman(8);
+            game.setComputer(2);
+            game.setComputer(4);
+
+            computer.minimax(new Game(game), 0);
+            game.setComputer(computer.getChoice());
+        } catch (OccupiedBoxException e) {
+            fail(e.getMessage());
+        }
 
         assertSame(BoxStatus.Computer, game.getBox(6));
     }
@@ -155,14 +179,19 @@ public class ComputerTest {
             -----------
              C | C | H
         */
-        game.setHuman(1);
-        game.setHuman(5);
-        game.setHuman(8);
-        game.setComputer(6);
-        game.setComputer(7);
 
-        computer.minimax(new Game(game), 0);
-        game.setComputer(computer.getChoice());
+        try {
+            game.setHuman(1);
+            game.setHuman(5);
+            game.setHuman(8);
+            game.setComputer(6);
+            game.setComputer(7);
+
+            computer.minimax(new Game(game), 0);
+            game.setComputer(computer.getChoice());
+        } catch (OccupiedBoxException e) {
+            fail(e.getMessage());
+        }
 
         assertSame(BoxStatus.Computer, game.getBox(2));
     }

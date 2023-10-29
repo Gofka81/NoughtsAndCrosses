@@ -1,7 +1,10 @@
 package aberdeen.assignment;
 
+import aberdeen.assignment.utils.GameStatus;
+import aberdeen.assignment.utils.OccupiedBoxException;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class ResultDetectionTest {
 
@@ -19,9 +22,13 @@ public class ResultDetectionTest {
                 -----------
                    |   |
          */
-        firstRow.setHuman(0);
-        firstRow.setHuman(1);
-        firstRow.setHuman(2);
+        try {
+            firstRow.setHuman(0);
+            firstRow.setHuman(1);
+            firstRow.setHuman(2);
+        } catch (OccupiedBoxException e) {
+            fail(e.getMessage());
+        }
 
         /* Creating a horizontal win scenario at 2nd row
            Board:
@@ -43,9 +50,14 @@ public class ResultDetectionTest {
                 -----------
                  H | H | H
          */
-        thirdRow.setHuman(6);
-        thirdRow.setHuman(7);
-        thirdRow.setHuman(8);
+        try {
+            thirdRow.setHuman(6);
+            thirdRow.setHuman(7);
+            thirdRow.setHuman(8);
+        } catch (OccupiedBoxException e) {
+            fail(e.getMessage());
+        }
+
 
         assertEquals("The fist row is not correct", GameStatus.Human, firstRow.gameStatus());
         assertEquals("The second row is not correct", GameStatus.Computer, secondRow.gameStatus());
@@ -66,9 +78,14 @@ public class ResultDetectionTest {
                 -----------
                  H |   |
          */
-        firstColumn.setHuman(0);
-        firstColumn.setHuman(3);
-        firstColumn.setHuman(6);
+        try {
+            firstColumn.setHuman(0);
+            firstColumn.setHuman(3);
+            firstColumn.setHuman(6);
+        } catch (OccupiedBoxException e) {
+            fail(e.getMessage());
+        }
+
 
         /* Creating a vertical win scenario at 2nd column
            Board:
@@ -90,9 +107,13 @@ public class ResultDetectionTest {
                 -----------
                    |   | H
          */
-        thirdColumn.setHuman(2);
-        thirdColumn.setHuman(5);
-        thirdColumn.setHuman(8);
+        try {
+            thirdColumn.setHuman(2);
+            thirdColumn.setHuman(5);
+            thirdColumn.setHuman(8);
+        } catch (OccupiedBoxException e) {
+            fail(e.getMessage());
+        }
 
         assertEquals("The fist column is not correct", GameStatus.Human, firstColumn.gameStatus());
         assertEquals("The second column is not correct", GameStatus.Computer, secondColumn.gameStatus());
@@ -113,9 +134,13 @@ public class ResultDetectionTest {
                 -----------
                    |   | H
          */
-        downhillDiagonal.setHuman(0);
-        downhillDiagonal.setHuman(4);
-        downhillDiagonal.setHuman(8);
+        try {
+            downhillDiagonal.setHuman(0);
+            downhillDiagonal.setHuman(4);
+            downhillDiagonal.setHuman(8);
+        } catch (OccupiedBoxException e) {
+            fail(e.getMessage());
+        }
 
 
         /* Creating a diagonal win scenario for uphill diagonal
@@ -146,10 +171,15 @@ public class ResultDetectionTest {
                 -----------
                    |   |
          */
-        game.setHuman(0);
-        game.setComputer(1);
-        game.setHuman(2);
-        game.setComputer(3);
+        try {
+            game.setHuman(0);
+            game.setComputer(1);
+            game.setHuman(2);
+            game.setComputer(3);
+        } catch (OccupiedBoxException e) {
+            fail(e.getMessage());
+        }
+
 
         assertEquals(GameStatus.InProgress, game.gameStatus());
     }
@@ -166,15 +196,20 @@ public class ResultDetectionTest {
                 -----------
                  C | H | C
          */
-        game.setHuman(0);
-        game.setComputer(1);
-        game.setHuman(2);
-        game.setHuman(3);
-        game.setHuman(4);
-        game.setComputer(5);
-        game.setComputer(6);
-        game.setHuman(7);
-        game.setComputer(8);
+        try {
+            game.setHuman(0);
+            game.setComputer(1);
+            game.setHuman(2);
+            game.setHuman(3);
+            game.setHuman(4);
+            game.setComputer(5);
+            game.setComputer(6);
+            game.setHuman(7);
+            game.setComputer(8);
+        } catch (OccupiedBoxException e) {
+            fail(e.getMessage());
+        }
+
 
         assertEquals(GameStatus.Tie, game.gameStatus());
     }
@@ -191,15 +226,20 @@ public class ResultDetectionTest {
                 -----------
                  C | H |
          */
-        game.setHuman(0);
-        game.setComputer(1);
-        game.setComputer(2);
-        game.setHuman(3);
-        game.setHuman(4);
-        game.setComputer(5);
-        game.setComputer(6);
-        game.setHuman(7);
-        game.setComputer(8);
+        try {
+            game.setHuman(0);
+            game.setComputer(1);
+            game.setComputer(2);
+            game.setHuman(3);
+            game.setHuman(4);
+            game.setComputer(5);
+            game.setComputer(6);
+            game.setHuman(7);
+            game.setComputer(8);
+        } catch (OccupiedBoxException e) {
+            fail(e.getMessage());
+        }
+
 
         assertEquals(GameStatus.Computer, game.gameStatus());
     }

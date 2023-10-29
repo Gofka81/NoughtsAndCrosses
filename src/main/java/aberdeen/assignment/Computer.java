@@ -1,5 +1,7 @@
 package aberdeen.assignment;
 
+import aberdeen.assignment.utils.GameStatus;
+
 /**
  * The Computer class represents a player-controlled by the computer in a game.
  * It is responsible for making intelligent moves using the minimax algorithm to determine the best move.

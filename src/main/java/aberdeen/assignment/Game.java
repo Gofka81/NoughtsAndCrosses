@@ -1,10 +1,8 @@
 package aberdeen.assignment;
 
-/*
- * Game.java
- *
- * Represents a game of noughts and crosses
- */
+import aberdeen.assignment.utils.BoxStatus;
+import aberdeen.assignment.utils.GameStatus;
+import aberdeen.assignment.utils.OccupiedBoxException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,19 +41,14 @@ public class Game {
         return (board[n] == BoxStatus.Empty);
     }
 
-    public boolean isComputer(int n) {
-        // Check if a box is taken by the Computer
-        return (board[n] == BoxStatus.Computer);
-    }
-
-    public boolean isHuman(int n) {
-        // Check if a box is taken by the Human
-        return (board[n] == BoxStatus.Human);
-    }
-
-    public void setHuman(int n) {
+    public void setHuman(int n) throws OccupiedBoxException {
         // Mark a square as claimed by the Human
-        board[n] = BoxStatus.Human;
+        if(isEmpty(n)){
+            board[n] = BoxStatus.Human;
+        }
+        else{
+            throw new OccupiedBoxException(String.format("Invalid input. Box %d is already occupied.",n+1));
+        }
     }
 
     public void setComputer(int n) {
