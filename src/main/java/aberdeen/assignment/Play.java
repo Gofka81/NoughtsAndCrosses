@@ -38,7 +38,7 @@ class Play{
         try {
             int square = input.nextInt() - 1;
             game.setHuman(square);
-        } catch (InputMismatchException e) {
+        } catch (InputMismatchException | ArrayIndexOutOfBoundsException e) {
             System.out.println("Invalid input. Please enter a number between 1 and 9.");
             input.next(); // Consume the invalid input
             playerTurn(); // Retry player's turn
